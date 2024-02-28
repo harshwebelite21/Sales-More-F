@@ -26,4 +26,5 @@ yarn-error.log*
 # Local Netlify folder
 .netlify
 
-.vscode
+.vscode/
+/home/web-h-020/Documents/e-commerce-be Frontend/.vscode
