@@ -1,22 +1,36 @@
 import axios from "axios";
-import { createContext, useContext, useEffect } from "react";
+import { createContext, useContext, useEffect, useReducer } from "react";
+import reducer from "../reducer/productReducer";
 
 const AppContext = createContext();
 const API = "https://api.pujakaitem.com/api/products";
 
+const initialState = {
+  isLoading: false,
+  isError: false,
+  products: [],
+  featureProducts: [],
+};
+
 const AppProvider = ({ children }) => {
+  const [state, dispatch] = useReducer(reducer, initialState);
+
   useEffect(() => {
     const getProducts = async (url) => {
-      const res = await axios.get(url);
-      console.log("🚀 ~ getProducts ~ res:", res.data)
+      dispatch({type:"SET_LOADING"})
+    try {
+        const res = await axios.get(url);
+        const products = res.data;
+        dispatch({ type: "MY_API_DATA", payload: products });
+    } catch (error) {
+      dispatch({type:"API_ERROR"})
+    }
     };
     getProducts(API);
   }, []);
 
   return (
-    <AppContext.Provider value={{ myName: "Harsh Vaghasiya" }}>
-      {children}
-    </AppContext.Provider>
+    <AppContext.Provider value={{ ...state }}>{children}</AppContext.Provider>
   );
 };
 
