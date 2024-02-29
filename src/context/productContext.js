@@ -17,14 +17,14 @@ const AppProvider = ({ children }) => {
 
   useEffect(() => {
     const getProducts = async (url) => {
-      dispatch({type:"SET_LOADING"})
-    try {
+      dispatch({ type: "SET_LOADING" });
+      try {
         const res = await axios.get(url);
         const products = res.data;
         dispatch({ type: "MY_API_DATA", payload: products });
-    } catch (error) {
-      dispatch({type:"API_ERROR"})
-    }
+      } catch (error) {
+        dispatch({ type: "API_ERROR" });
+      }
     };
     getProducts(API);
   }, []);
