@@ -74,11 +74,6 @@ const SingleProduct = () => {
               </div>
 
               <div className="product-warranty-data">
-                <TbTruckDelivery className="warranty-icon" />
-                <p>Thapa Delivered </p>
-              </div>
-
-              <div className="product-warranty-data">
                 <MdSecurity className="warranty-icon" />
                 <p>2 Year Warranty </p>
               </div>
