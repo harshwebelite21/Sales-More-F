@@ -1,8 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import { Button } from "../styles/Button";
 import { NavLink } from "react-router-dom";
+import Button from "../styles/Button";
 import hero from "../images/hero.jpg";
+
 const HeroSection = ({ myData }) => {
   const { name } = myData;
   return (
@@ -13,11 +14,11 @@ const HeroSection = ({ myData }) => {
             <p className="intro-data">Welcome To</p>
             <h1>{name}</h1>
             <p>
-              It wasn't quite yet time to panic. There was still time to salvage
-              the situation. At least that is what she was telling himself. The
-              reality was that it was time to panic and there wasn't time to
-              salvage the situation, but he continued to delude himself into
-              believing there was.
+              It wasn&lsquot quite yet time to panic. There was still time to
+              salvage the situation. At least that is what she was telling
+              himself. The reality was that it was time to panic and there wasn
+              &lsquot time to salvage the situation, but he continued to delude
+              himself into believing there was.
             </p>
             <NavLink>
               <Button>Shop Now</Button>
@@ -25,7 +26,7 @@ const HeroSection = ({ myData }) => {
           </div>
           <div className="hero-section-image">
             <figure>
-              <img src={hero} alt="hero-section-photo" className="img-style" />
+              <img src={hero} alt="hero-section" className="img-style" />
             </figure>
           </div>
         </div>

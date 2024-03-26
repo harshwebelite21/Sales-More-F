@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { FaCheck } from "react-icons/fa";
-import CartAmountToggle from "./components/CartAmountToggle";
 import { NavLink } from "react-router-dom";
-import { Button } from "./styles/Button.js";
+import CartAmountToggle from "./components/CartAmountToggle";
+import Button from "./styles/Button";
 
 const AddToCart = ({ product }) => {
-  const { id, colors, stock } = product;
+  const { colors } = product;
   const [color, setColor] = useState(colors[0]);
   const [quantity, setQuantity] = useState(1);
 
@@ -23,20 +23,19 @@ const AddToCart = ({ product }) => {
       <div className="colors">
         <p>
           Colours:
-          {colors.map((curColor, index) => {
-            return (
-              <button
-                key={index}
-                className={color === curColor ? "btnStyle active" : "btnStyle"}
-                style={{ backgroundColor: curColor }}
-                onClick={() => {
-                  setColor(curColor);
-                }}
-              >
-                {color === curColor ? <FaCheck className="checkStyle" /> : null}
-              </button>
-            );
-          })}
+          {colors.map((curColor) => (
+            <button
+              key={curColor}
+              className={color === curColor ? "btnStyle active" : "btnStyle"}
+              style={{ backgroundColor: curColor }}
+              onClick={() => {
+                setColor(curColor);
+              }}
+              type="button" // Add type attribute to the button
+            >
+              {color === curColor && <FaCheck className="checkStyle" />}
+            </button>
+          ))}
         </p>
       </div>
       <CartAmountToggle

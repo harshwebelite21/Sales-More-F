@@ -1,6 +1,6 @@
-import React from "react";
-
 const productReducer = (state, action) => {
+  let featureData; // Declare featureData variable outside of the switch block
+
   switch (action.type) {
     case "SET_LOADING":
       return {
@@ -14,9 +14,9 @@ const productReducer = (state, action) => {
         isError: true,
       };
     case "MY_API_DATA":
-      const featureData = action.payload.filter((curElem) => {
-        return curElem.featured === true;
-      });
+      featureData = action.payload.filter(
+        (curElem) => curElem.featured === true,
+      );
       return {
         ...state,
         isLoading: false,
@@ -27,9 +27,7 @@ const productReducer = (state, action) => {
       return {
         ...state,
         isSingleLoading: true,
-        
       };
-
     case "MY_SINGLE_PRODUCT":
       return {
         ...state,
@@ -37,16 +35,14 @@ const productReducer = (state, action) => {
         isError: false,
         singleProduct: action.payload,
       };
-
     case "SET_SINGLE_ERROR":
       return {
         ...state,
         isSingleLoading: false,
         isError: true,
       };
-    default: {
+    default:
       return state;
-    }
   }
 };
 

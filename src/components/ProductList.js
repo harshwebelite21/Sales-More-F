@@ -1,29 +1,18 @@
-import styled from "styled-components";
 import React from "react";
+import styled from "styled-components";
 import Product from "./Product";
-import { useProductContext } from "../context/productContext";
 
-const FeatureProduct = () => {
-  const { isLoading, featureProducts } = useProductContext();
-
-  if (isLoading) {
-    return <div> ......Loading </div>;
-  }
-
-  return (
-    <Wrapper className="section">
-      <div className="container">
-        <div className="intro-data">Check Now!</div>
-        <div className="common-heading">Our Feature Services</div>
-        <div className="grid grid-three-column">
-          {featureProducts.map((curElem) => (
-            <Product key={curElem.id} {...curElem} />
-          ))}
-        </div>
+const ProductList = ({ products }) => (
+  <Wrapper className="section">
+    <div className="container">
+      <div className="grid grid-three-column">
+        {products.map((curElem) => (
+          <Product key={curElem.id} {...curElem} />
+        ))}
       </div>
-    </Wrapper>
-  );
-};
+    </div>
+  </Wrapper>
+);
 
 const Wrapper = styled.section`
   padding: 9rem 0;
@@ -124,5 +113,4 @@ const Wrapper = styled.section`
     }
   }
 `;
-
-export default FeatureProduct;
+export default ProductList;

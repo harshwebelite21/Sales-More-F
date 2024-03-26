@@ -1,8 +1,7 @@
 import styled from "styled-components";
+import React from "react";
 
-const Cart = () => {
-  return <Wrapper></Wrapper>;
-};
+const Cart = () => <Wrapper />;
 
 const Wrapper = styled.section`
   padding: 9rem 0;

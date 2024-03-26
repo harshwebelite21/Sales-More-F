@@ -1,13 +1,12 @@
-import { useEffect } from "react";
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
+import { MdSecurity } from "react-icons/md";
+import { TbTruckDelivery, TbReplace } from "react-icons/tb";
+import React, { useEffect } from "react";
 import { useProductContext } from "./context/productContext";
 import PageNavigation from "./components/PageNavigation";
 import MyImage from "./components/MyImage";
-import { Container } from "./styles/Container";
-// import FormatPrice from "./Helpers/FormatPrice";
-import { MdSecurity } from "react-icons/md";
-import { TbTruckDelivery, TbReplace } from "react-icons/tb";
+import Container from "./styles/Container";
 import Star from "./Star";
 import AddToCart from "./AddToCart";
 
@@ -20,12 +19,10 @@ const SingleProduct = () => {
   const { id } = useParams();
 
   const {
-    id: alias,
-    name,
+    id: name,
     company,
     price,
     description,
-    category,
     stock,
     stars,
     reviews,
@@ -82,13 +79,13 @@ const SingleProduct = () => {
             <div className="product-data-info">
               <p>
                 Available:
-                <span> {stock > 0 ? "In Stock" : "Not Available"}</span>
+                <span>{stock > 0 ? "In Stock" : "Not Available"}</span>
               </p>
               <p>
-                ID : <span> {id} </span>
+                ID :<span>{id}</span>
               </p>
               <p>
-                Brand :<span> {company} </span>
+                Brand :<span>{company}</span>
               </p>
             </div>
             <hr />
