@@ -29,5 +29,6 @@ module.exports = {
     "no-nested-ternary": "off",
     "react/jsx-props-no-spreading": "off",
     "object-curly-newline": "off",
+    "jsx-a11y/label-has-associated-control": "off",
   },
 };
