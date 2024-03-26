@@ -9,6 +9,7 @@ import { Container } from "./styles/Container";
 import { MdSecurity } from "react-icons/md";
 import { TbTruckDelivery, TbReplace } from "react-icons/tb";
 import Star from "./Star";
+import AddToCart from "./AddToCart";
 
 const API = "https://api.pujakaitem.com/api/products";
 
@@ -52,7 +53,7 @@ const SingleProduct = () => {
           {/* product dAta  */}
           <div className="product-data">
             <h2>{name}</h2>
-            <Star star={stars} review={reviews}/>
+            <Star star={stars} review={reviews} />
             <p className="product-data-price">
               MRP:
               {price}
@@ -95,6 +96,8 @@ const SingleProduct = () => {
                 Brand :<span> {company} </span>
               </p>
             </div>
+            <hr />
+            {stock > 0 && <AddToCart product={singleProduct} />}
           </div>
         </div>
       </Container>
