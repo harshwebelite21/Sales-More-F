@@ -1,10 +1,9 @@
 import { FaStar, FaStarHalfAlt } from "react-icons/fa";
 import { AiOutlineStar } from "react-icons/ai";
 import styled from "styled-components";
+import React from "react";
 
 const Star = ({ star, review }) => {
-  console.log("🚀 ~ Star ~ reviews:", review);
-  console.log("🚀 ~ Star ~ stars:", star);
   const ratingStar = Array.from({ length: 5 }, (_, index) => {
     const rating = index + 1;
     const isHalfStar = star >= rating - 0.5 && star < rating;

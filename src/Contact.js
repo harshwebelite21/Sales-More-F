@@ -1,4 +1,7 @@
 import styled from "styled-components";
+import React from "react";
+
+// Your component code here
 
 const Contact = () => {
   const Wrapper = styled.section`
@@ -37,6 +40,7 @@ const Contact = () => {
     <Wrapper>
       <h2 className="common-heading"> contact Page</h2>
       <iframe
+        title="Google Maps"
         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d235013.74843113706!2d72.41493006513545!3d23.020474100316218!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e848aba5bd449%3A0x4fcedd11614f6516!2sAhmedabad%2C%20Gujarat!5e0!3m2!1sen!2sin!4v1709097757743!5m2!1sen!2sin"
         width="100%"
         height="450"
@@ -44,7 +48,7 @@ const Contact = () => {
         allowFullScreen=""
         loading="lazy"
         referrerPolicy="no-referrer-when-downgrade"
-      ></iframe>
+      />
 
       <div className="container">
         <div className="contact-form">
@@ -76,7 +80,7 @@ const Contact = () => {
               required
               autoComplete="off"
               placeholder="Enter you message"
-            ></textarea>
+            />
 
             <input type="submit" value="send" />
           </form>

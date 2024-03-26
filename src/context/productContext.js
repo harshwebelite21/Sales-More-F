@@ -1,5 +1,12 @@
 import axios from "axios";
-import { createContext, useContext, useEffect, useReducer } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useReducer,
+  React,
+  useMemo,
+} from "react";
 import reducer from "../reducer/productReducer";
 
 const AppContext = createContext();
@@ -38,20 +45,20 @@ const AppProvider = ({ children }) => {
       dispatch({ type: "SET_SINGLE_ERROR" });
     }
   };
+  const memoizedValue = useMemo(
+    () => ({ ...state, getSingleProduct }),
+    [state, getSingleProduct],
+  );
   useEffect(() => {
     getProducts(API);
   }, []);
 
   return (
-    <AppContext.Provider value={{ ...state, getSingleProduct }}>
-      {children}
-    </AppContext.Provider>
+    <AppContext.Provider value={memoizedValue}>{children}</AppContext.Provider>
   );
 };
 
 // custom hooks
-const useProductContext = () => {
-  return useContext(AppContext);
-};
+const useProductContext = () => useContext(AppContext);
 
 export { AppProvider, AppContext, useProductContext };
