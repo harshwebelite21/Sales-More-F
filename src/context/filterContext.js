@@ -15,6 +15,9 @@ const initialState = {
   filterProducts: [],
   all_products: [],
   gridView: true,
+  filters: {
+    text: "",
+  },
 };
 
 export const FilterContextProvider = ({ children }) => {
@@ -31,9 +34,20 @@ export const FilterContextProvider = ({ children }) => {
     [dispatch],
   );
 
+  // For filtering the data
+  const filteringGetValue = (event) => {
+    const { name, value } = event.target;
+    return dispatch({ type: "UPDATE_FILTER_VALUE", payload: { name, value } });
+  };
+
+  useEffect(
+    () => dispatch({ type: "GET_FILTER_DATA", payload: products }),
+    [state.filters.text],
+  );
+
   const memoizedState = useMemo(
-    () => ({ ...state, setGridView, setListView }),
-    [state, setGridView, setListView],
+    () => ({ ...state, setGridView, setListView, filteringGetValue }),
+    [state, setGridView, setListView, filteringGetValue],
   );
 
   // To set the grid view

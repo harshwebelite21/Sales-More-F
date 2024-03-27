@@ -18,6 +18,30 @@ const filterReducer = (state, action) => {
         ...state,
         gridView: false,
       };
+
+    case "UPDATE_FILTER_VALUE": {
+      const { name, value } = action.payload;
+      return {
+        ...state,
+        filters: {
+          ...state.filters,
+          [name]: value,
+        },
+      };
+    }
+
+    case "GET_FILTER_DATA": {
+      const tempData = [...action.payload];
+      const filteredItems = tempData.filter((item) =>
+        item.name.toLowerCase().includes(state.filters.text.toLowerCase()),
+      );
+
+      return {
+        ...state,
+        filterProducts: filteredItems,
+      };
+    }
+
     default:
       return state;
   }
