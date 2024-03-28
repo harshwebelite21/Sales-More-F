@@ -4,11 +4,13 @@ import { FaCheck } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 import CartAmountToggle from "./components/CartAmountToggle";
 import Button from "./styles/Button";
+import { useCartContext } from "./context/cartContext";
 
 const AddToCart = ({ product }) => {
   const { colors } = product;
   const [color, setColor] = useState(colors[0]);
   const [quantity, setQuantity] = useState(1);
+  const { addToCart } = useCartContext();
 
   const increaseQuantity = () => {
     setQuantity((prevQuantity) => prevQuantity + 1);
@@ -31,7 +33,7 @@ const AddToCart = ({ product }) => {
               onClick={() => {
                 setColor(curColor);
               }}
-              type="button" // Add type attribute to the button
+              type="button"
             >
               {color === curColor && <FaCheck className="checkStyle" />}
             </button>
@@ -45,7 +47,12 @@ const AddToCart = ({ product }) => {
       />
 
       <NavLink to="/cart">
-        <Button className="btn">AddToCart</Button>
+        <Button
+          className="btn"
+          onClick={() => addToCart(product.id, color, quantity, product)}
+        >
+          AddToCart
+        </Button>
       </NavLink>
     </Wrapper>
   );

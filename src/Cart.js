@@ -1,7 +1,66 @@
 import styled from "styled-components";
 import React from "react";
+import { NavLink } from "react-router-dom";
+import { useCartContext } from "./context/cartContext";
+import CartItem from "./components/CartItem";
+import Button from "./styles/Button";
 
-const Cart = () => <Wrapper />;
+const Cart = () => {
+  const { cart, clearCart } = useCartContext();
+  const totalAmount = cart.reduce(
+    (total, item) => total + item.quantity * item.price,
+    0,
+  );
+  const shippingFee = cart.length * 50;
+
+  return (
+    <Wrapper>
+      <div className="container">
+        <div className="cart_heading grid grid-five-column">
+          <p>Item</p>
+          <p className="cart-hide">Price</p>
+          <p>Quantity</p>
+          <p className="cart-hide">Subtotal</p>
+          <p>Remove</p>
+        </div>
+        <hr />
+
+        <div className="cart-item">
+          {cart.map((curElem) => (
+            <CartItem key={curElem.id} {...curElem} />
+          ))}
+        </div>
+        <hr />
+        <div className="cart-two-button">
+          <NavLink to="/products">
+            <Button> continue Shopping </Button>
+          </NavLink>
+          <Button className="btn btn-clear" onClick={clearCart}>
+            clear cart
+          </Button>
+        </div>
+        {/* order total_amount */}
+        <div className="order-total--amount">
+          <div className="order-total--subdata">
+            <div>
+              <p>subtotal:</p>
+              <p>{totalAmount}</p>
+            </div>
+            <div>
+              <p>shipping fee:</p>
+              <p>{shippingFee}</p>
+            </div>
+            <hr />
+            <div>
+              <p>order total:</p>
+              <p>{shippingFee + totalAmount}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Wrapper>
+  );
+};
 
 const Wrapper = styled.section`
   padding: 9rem 0;
