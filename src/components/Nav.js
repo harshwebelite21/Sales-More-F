@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { FiShoppingCart } from "react-icons/fi";
 import { CgMenu, CgClose } from "react-icons/cg";
+import { useCartContext } from "../context/cartContext";
 
 const StyledNav = styled.nav`
   .navbar-lists {
@@ -159,6 +160,10 @@ const StyledNav = styled.nav`
 `;
 const Nav = () => {
   const [menuIcon, setMenuIcon] = useState(true);
+  const { cart } = useCartContext();
+
+  const totalCartItem = cart.reduce((total, item) => total + item.quantity, 0);
+
   return (
     <StyledNav>
       <div className={menuIcon ? "navbar active" : "navbar"}>
@@ -206,7 +211,7 @@ const Nav = () => {
               onClick={() => setMenuIcon(false)}
             >
               <FiShoppingCart className="cart-trolley" />
-              <span className="cart-total--item"> 10 </span>
+              <span className="cart-total--item"> {totalCartItem} </span>
             </NavLink>
           </li>
         </ul>
