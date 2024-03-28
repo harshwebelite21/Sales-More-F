@@ -30,5 +30,7 @@ module.exports = {
     "react/jsx-props-no-spreading": "off",
     "object-curly-newline": "off",
     "jsx-a11y/label-has-associated-control": "off",
+    "implicit-arrow-linebreak": "off",
+    "function-paren-newline": "off",
   },
 };
